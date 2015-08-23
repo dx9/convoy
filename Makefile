@@ -10,7 +10,7 @@ FLAGS = -a -tags "netgo libdm_no_deferred_remove" \
 	--installsuffix netgo
 
 $(VOLMGR_MOUNT_EXEC_FILE): ./tools/volmgr_mount.c
-	gcc -o ./bin/volmgr_mount ./tools/volmgr_mount.c
+	gcc -static-libgcc -Wl,-Bstatic -lc -o ./bin/volmgr_mount ./tools/volmgr_mount.c
 
 $(VOLMGR_EXEC_FILE): ./api/devmapper.go ./api/response.go \
 	./blockstores/blockstores.go ./vfsblockstore/vfsblockstore.go \
